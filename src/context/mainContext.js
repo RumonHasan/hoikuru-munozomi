@@ -1,4 +1,5 @@
 import React, {useContext, createContext, useState} from 'react';
+import { useMediaQuery } from '@material-ui/core';
 
 export const GlobalContext = createContext();
 
@@ -7,17 +8,9 @@ export const GlobalProvider = ({children}) =>{
     const [openDrawer, setOpenDrawer] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
     // responsive functions
-    const [checkSize, setCheckSize] = useState(false);
-    React.useEffect(()=>{
-        const sizeHandler = ()=>{
-            setCheckSize(testing.matches);
-        }
-        const testing = window.matchMedia("(max-width: 700px)");
-        testing.addEventListener("change", sizeHandler);
-        return ()=>{
-            testing.removeEventListener('change', sizeHandler);
-        };
-    },[]);
+    const checkSize = useMediaQuery('(max-width:700px)');
+    const extraSmall = useMediaQuery('(max-width:375px)');
+    const checkSizeMid = useMediaQuery('(max-width:960px)');
 
     // drawer functions
     const openDrawerFunc = ()=>{
@@ -40,6 +33,8 @@ export const GlobalProvider = ({children}) =>{
             darkMode,
             //responsive,
             checkSize,
+            checkSizeMid,
+            extraSmall,
 
             // functions
             openDrawerFunc,
@@ -55,4 +50,19 @@ export const GlobalProvider = ({children}) =>{
 export const useGlobalContext = ()=>{
     return useContext(GlobalContext);
 }
+
+// extras 
+// responsive 
+
+    // React.useEffect(()=>{
+    //     const sizeHandler = ()=>{
+    //         setCheckSize(testing.matches);
+    //     }
+    //     const testing = window.matchMedia("(max-width: 700px)");
+    //     testing.addEventListener("change", sizeHandler);
+    //     return ()=>{
+    //         testing.removeEventListener('change', sizeHandler);
+    //     };
+    // },[]);
+
 

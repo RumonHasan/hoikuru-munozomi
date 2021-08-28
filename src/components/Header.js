@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { AppBar, Toolbar, Grid, Drawer as MuiDrawer, makeStyles, Typography, List, ListItem, ListItemIcon, Button, ListItemText, } from '@material-ui/core';
+import { AppBar, Toolbar, Grid, Drawer as MuiDrawer, makeStyles, Typography, List, ListItem, ListItemIcon, Button, ListItemText, Card, CardHeader, } from '@material-ui/core';
 import { useGlobalContext } from '../context/mainContext';
 import { FaBars } from 'react-icons/fa';
 import { FaSearchLocation } from 'react-icons/fa';
@@ -17,13 +17,13 @@ const Header = ()=>{
         },
         locationButton:{
             fontSize:checkSize ? '25px': '30px',
-            transition: '850ms',
-            color:colors.mainYellow,
+            transition: 'opacity 1s',
+            color:colors.lightPink,
         },
         headerButton:{
             fontSize:checkSize ? '25px': '30px',
             transition: '850ms',
-            color:colors.mainYellow,
+            color:colors.lightPink,
         },
         List:{
             display:'flex',
@@ -33,17 +33,34 @@ const Header = ()=>{
         },
         ListButton:{
             padding: theme.spacing(1.5),
+            background: colors.secondPink,
+            margin: theme.spacing(1.5),
+            '&:hover':{
+                background: colors.lightYellow,
+            }
         },
         headerTitle:{
             fontSize:checkSize ? '18px': '25px',
             transition: '850ms',
-            color:colors.mainYellow,
+            color:colors.lightPink,
+        },
+        cardHeader:{
+            '& .MuiCardHeader-title':{
+                color:colors.darkPink1,
+            }
+        },// app bar design 
+        drawer:{
+            '& .MuiPaper-root':{
+                background: colors.darkPink2,
+            }
         }
     }))
     // style classes
     const classes = useStyles();
     // drawer anchor 
     const [anchor, setAnchor] = useState('right');
+    // map hover 
+    const [mapText, setMapText] = useState(false);
 
     return (
         <AppBar position='sticky' style={{ background: 'transparent', boxShadow: 'none'}}>
@@ -56,16 +73,21 @@ const Header = ()=>{
                     <Grid item sm></Grid> {/*empty item*/}
 
                     <Grid item xs={6} style={{display:'flex', justifyContent:'flex-end' }}>
-                        <Button className={classes.locationButton}><FaSearchLocation/></Button>
+                        <Button className={classes.locationButton} onMouseEnter={()=>setMapText(true)} onMouseLeave={()=>setMapText(false)}>{mapText ? 'アクセス' :<FaSearchLocation/>}</Button>
                         <Button className={classes.headerButton} onClick={openDrawerFunc}><FaBars/></Button>
-                        <MuiDrawer anchor={anchor} open={openDrawer} onClose={closeDrawerFunc}>
+                        <MuiDrawer anchor={anchor} open={openDrawer} onClose={closeDrawerFunc} className={classes.drawer}>
+                            <Card>
+                                <CardHeader title='メインメニュー'
+                                    className={classes.cardHeader}
+                                />
+                            </Card>
                             <List className={classes.List}>
                                 {menuItems.map((item,index)=>{
                                     const {label, icon} = item;
                                     return(
-                                        <Button style={{fontSize:'23px'}} className={classes.ListButton} color='primary' key={index} >
-                                            <ListItemIcon style={{fontSize:'25px', color:colors.menuBlue}}>{icon}</ListItemIcon>
-                                            <ListItemText style={{fontSize:'25px'}} primary={label}/>
+                                        <Button style={{fontSize:'23px'}} className={classes.ListButton} color='primary' key={index} variant='contained'>
+                                            <ListItemIcon style={{fontSize:'25px', color:colors.menuBlack}}>{icon}</ListItemIcon>
+                                            <ListItemText style={{fontSize:'26px', color:colors.mainBlack}} primary={label}/>
                                         </Button>
                                     )
                                 })}
