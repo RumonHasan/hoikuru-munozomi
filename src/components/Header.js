@@ -7,6 +7,7 @@ import { FaSearchLocation } from 'react-icons/fa';
 import { menuItems, Title } from '../services/data';
 // colors
 import { colors } from '../style/colors';
+import { Link } from '@material-ui/core';
 
 const Header = ()=>{
     //context 
@@ -35,6 +36,7 @@ const Header = ()=>{
             padding: theme.spacing(1.5),
             background: colors.secondPink,
             margin: theme.spacing(1.5),
+            width: checkSize ? '260px' :'280px',
             '&:hover':{
                 background: colors.lightYellow,
             }
@@ -73,7 +75,7 @@ const Header = ()=>{
                     <Grid item sm></Grid> {/*empty item*/}
 
                     <Grid item xs={6} style={{display:'flex', justifyContent:'flex-end' }}>
-                        <Button className={classes.locationButton} onMouseEnter={()=>setMapText(true)} onMouseLeave={()=>setMapText(false)}>{mapText ? 'アクセス' :<FaSearchLocation/>}</Button>
+                        <Link href='#アクセス'><Button className={classes.locationButton} onMouseEnter={()=>setMapText(true)} onMouseLeave={()=>setMapText(false)}>{mapText ? 'アクセス' :<FaSearchLocation/>}</Button></Link>
                         <Button className={classes.headerButton} onClick={openDrawerFunc}><FaBars/></Button>
                         <MuiDrawer anchor={anchor} open={openDrawer} onClose={closeDrawerFunc} className={classes.drawer}>
                             <Card>
@@ -84,11 +86,16 @@ const Header = ()=>{
                             <List className={classes.List}>
                                 {menuItems.map((item,index)=>{
                                     const {label, icon} = item;
+                                    const drawerClose = ()=>{
+                                        closeDrawerFunc()
+                                    }
                                     return(
-                                        <Button style={{fontSize:'23px'}} className={classes.ListButton} color='primary' key={index} variant='contained'>
-                                            <ListItemIcon style={{fontSize:'25px', color:colors.menuBlack}}>{icon}</ListItemIcon>
-                                            <ListItemText style={{fontSize:'26px', color:colors.mainBlack}} primary={label}/>
-                                        </Button>
+                                        <Link href={'#'+label}>
+                                            <Button style={{fontSize:'23px'}} onClick={drawerClose} className={classes.ListButton} color='primary' key={index} variant='contained'>
+                                                <ListItemIcon style={{fontSize:'25px', color:colors.menuBlack}}>{icon}</ListItemIcon>
+                                                <ListItemText style={{fontSize:'26px', color:colors.mainBlack}} primary={label}/>
+                                            </Button>
+                                        </Link>
                                     )
                                 })}
                             </List>

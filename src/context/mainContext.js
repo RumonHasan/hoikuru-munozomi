@@ -7,6 +7,7 @@ export const GlobalProvider = ({children}) =>{
     // states
     const [openDrawer, setOpenDrawer] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
+    const [openDialog, setDialogOpen] = useState(false);
     // responsive functions
     const checkSize = useMediaQuery('(max-width:700px)');
     const extraSmall = useMediaQuery('(max-width:375px)');
@@ -18,6 +19,14 @@ export const GlobalProvider = ({children}) =>{
     }
     const closeDrawerFunc = ()=>{
         setOpenDrawer(false);
+    }
+    // dialog open
+    const openDialogBox = ()=>{
+        setDialogOpen(true);
+        console.log(openDialog)
+    }
+    const closeDialogBox = ()=>{
+        setDialogOpen(false);
     }
     // dark mode functions
     const darkModeActive = ()=>{
@@ -31,6 +40,8 @@ export const GlobalProvider = ({children}) =>{
             //states
             openDrawer,
             darkMode,
+            openDialog,
+        
             //responsive,
             checkSize,
             checkSizeMid,
@@ -41,6 +52,8 @@ export const GlobalProvider = ({children}) =>{
             closeDrawerFunc,
             darkModeActive,
             lightModeActive,
+            openDialogBox,
+            closeDialogBox
         }}>
             {children}
         </GlobalContext.Provider>

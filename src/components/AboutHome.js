@@ -28,6 +28,7 @@ const AboutHome = ()=>{
         },
         root:{ // paper container
             padding: theme.spacing(5),
+            marginBottom: theme.spacing(6),
         },
         roomImages:{
             width: '80%',
@@ -102,7 +103,7 @@ const AboutHome = ()=>{
     const classes = useStyles();
 
     return (
-        <div className={classes.aboutContainer}>
+        <div className={classes.aboutContainer} id='ご挨拶'>
           <div className={classes.imgBox}>
                 <img src={childPlay} alt={childPlay} className={classes.imgChild}
                 />

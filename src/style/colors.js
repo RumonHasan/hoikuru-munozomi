@@ -23,4 +23,5 @@ export const colors = {
     featureTitle: '#5D3FD3',
     imageBg: '#c1fdc1',
     imageTitleBlock: '#00A36C',
+    mapBg: '#FFBFBF',
 } 

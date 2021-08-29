@@ -74,7 +74,7 @@ const Feature = ()=>{
     }))
     const classes = useStyles();
     return (
-    <div className={classes.container}>
+    <div className={classes.container} id='保育ルームのぞみの特徴'>
     <Fade right >
         <div className={classes.titleContainer}>
             <div className={classes.titleBlock}>

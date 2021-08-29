@@ -93,3 +93,11 @@ export const basicInfo = [
     
 
 ]
+
+// address 
+export const address = 
+    {
+    title: 'Address（所在地)',
+    location: '〒335-0004 埼玉県蕨市中央5-20-23 アネックスアイ102号 蕨駅より徒歩16分 戸田駅より徒歩18分'
+    }
+
