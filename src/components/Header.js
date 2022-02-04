@@ -8,6 +8,7 @@ import { menuItems, Title } from '../services/data';
 // colors
 import { colors } from '../style/colors';
 import { Link } from '@material-ui/core';
+import { font } from '../style/font';
 
 const Header = ()=>{
     //context 
@@ -34,7 +35,7 @@ const Header = ()=>{
         },
         ListButton:{
             padding: theme.spacing(1.5),
-            background: colors.secondPink,
+            background: colors.thirdBg,
             margin: theme.spacing(1.5),
             width: checkSize ? '260px' :'280px',
             '&:hover':{
@@ -42,18 +43,19 @@ const Header = ()=>{
             }
         },
         headerTitle:{
+            fontFamily: font.textFont,
             fontSize:checkSize ? '18px': '25px',
             transition: '850ms',
             color:colors.lightPink,
         },
         cardHeader:{
             '& .MuiCardHeader-title':{
-                color:colors.darkPink1,
+                color:colors.mainBlack,
             }
         },// app bar design 
         drawer:{
             '& .MuiPaper-root':{
-                background: colors.darkPink2,
+                background: colors.mainBg,
             }
         }
     }))
@@ -90,7 +92,7 @@ const Header = ()=>{
                                         closeDrawerFunc()
                                     }
                                     return(
-                                        <Link href={'#'+label}>
+                                        <Link href={'#'+label} key={index}>
                                             <Button style={{fontSize:'23px'}} onClick={drawerClose} className={classes.ListButton} color='primary' key={index} variant='contained'>
                                                 <ListItemIcon style={{fontSize:'25px', color:colors.menuBlack}}>{icon}</ListItemIcon>
                                                 <ListItemText style={{fontSize:'26px', color:colors.mainBlack}} primary={label}/>

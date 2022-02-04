@@ -8,6 +8,8 @@ import Zoom from 'react-reveal/Zoom';
 // context
 import { useGlobalContext } from '../context/mainContext';
 import { FormatColorTextSharp } from '@material-ui/icons';
+// font
+import { font } from '../style/font';
 
 const Feature = ()=>{
     const {checkSize, extraSmall} = useGlobalContext();
@@ -26,7 +28,7 @@ const Feature = ()=>{
         featureGrid:{
             borderRadius: 30,
             background: colors.featureTitle,
-            maxWidth: '1100px',
+            maxWidth: '1200px',
             opacity: '0.7',
             marginBottom: theme.spacing(10),
             '&:hover':{
@@ -54,6 +56,7 @@ const Feature = ()=>{
 
         },
         title:{
+            fontFamily: font.textFont,
             fontWeight:'bold',
             padding: theme.spacing(2),
             transition: '850ms',
@@ -87,11 +90,15 @@ const Feature = ()=>{
         <div className={classes.root}>
                 <Grid container alignItems='center' className={classes.featureGrid}>
                     {featureData.map((item, index)=>{
-                        const {id, text} = item;
+                        const {id, text, titleText} = item;
                         return(
                             <Grid item key={index} xs={12} lg={6} md={6} className={classes.featureBlock}>
-                                <Typography variant='h5' style={{color:colors.primaryWhite}}>
-                                    {id}. {text}
+                                <Typography variant='h4' style={{color:colors.primaryWhite, fontWeight: 'bolder', borderBottom: '1px solid white', fontFamily: font.textFont}}>
+                                    {id}. {titleText}
+                                </Typography>
+                                <br/>
+                                <Typography variant='h5' style={{color:colors.primaryWhite, fontWeight: 'bold', fontFamily: font.textFont}}>
+                                    {text}
                                 </Typography>
                             </Grid>
                         )

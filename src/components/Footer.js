@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles, Typography} from '@material-ui/core';
 import { colors } from '../style/colors';
+import { font } from '../style/font';
 
 const Footer = () => {
     const useStyles= makeStyles(theme=>({
@@ -16,7 +17,7 @@ const Footer = () => {
     return (
         <div className={classes.root}>
             <Typography variant='h6' style={{color:colors.primaryWhite, 
-            fontWeight:'bold'}}>@2021 保育ルームのぞみ</Typography>
+            fontWeight:'bolder', fontFamily: font.textFont}}>@2021 保育ルームのぞみ</Typography>
         </div>
     )
 }

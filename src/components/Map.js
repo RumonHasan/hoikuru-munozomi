@@ -6,10 +6,11 @@ import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import { address } from '../services/data';
 import kid from '../images/kid.png';
+import { font } from '../style/font';
 // material
 import { Typography, makeStyles, Grid } from '@material-ui/core';
 // google map imports
-import { GoogleMap, withGoogleMap, Marker, withScriptjs, InfoWindow } from 'react-google-maps';
+import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/api';
 // context
 import { useGlobalContext } from '../context/mainContext';
 // primary location api key 
@@ -45,6 +46,7 @@ const Map = ()=>{
         alignItems: 'center',
     },
       title:{
+          fontFamily: font.textFont,
           fontWeight:'bold',
           padding: theme.spacing(2),
           transition: '850ms',
@@ -85,23 +87,30 @@ const Map = ()=>{
         lat: 35.8219398302284,
         long: 139.6808004207051
     }
+    const mapContainerStyle = {
+      width:'450px',
+      height: '450px',
+    }
+    const center = {
+      lat: 35.8219398302284,
+      lng: 139.6808004207051
+    }
+
     
     // map
     const MapWithAMarker = ()=>{
       return(
-        <GoogleMap 
-        defaultZoom={17}
-        defaultCenter={{ lat: location.lat, lng: location.long }}
-        >
-        <Marker position={{lat:location.lat, lng:location.long}}
-          onClick={()=>setSelectLocation(true)}
-        />
+    <LoadScript 
+    googleMapsApiKey={LocationAPIKey}>
+        <GoogleMap mapContainerStyle={mapContainerStyle}
+        zoom={17} center={center}>
+                <Marker
+                  position={{lat: 35.8219398302284, lng: 139.6808004207051}}/>
+        </GoogleMap>
+    </LoadScript>
 
-      </GoogleMap>
       )
     }
-    // google map script 
-    const WrappedMap = withScriptjs(withGoogleMap(MapWithAMarker));
     
     return (
     <div id='アクセス' className={classes.container}>
@@ -123,18 +132,13 @@ const Map = ()=>{
       <Zoom top>
         <div className={classes.root}>
           <Grid container alignItems='center' style={{padding: '10px'}}>
-            <Grid item xs={12} lg={6} md={6}>
-              <WrappedMap 
-                  googleMapURL= {`https://maps.googleapis.com/maps/api/js?key=${LocationAPIKey}&v=3.exp&libraries=geometry,drawing,places`}
-                  loadingElement={<div style={{ height: `100%` }} />}
-                  containerElement={<div style={{ height: `400px` }} />}
-                  mapElement={<div style={{ height: `100%` }} />}
-                  />
+            <Grid item xs={12} lg={6} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+              <MapWithAMarker/>
             </Grid>
             <Grid item xs={12} lg={6} md={6}>
               <Paper elevation={3} className={classes.addCard} style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center', zIndex:10}}>
-                    <Typography variant='h4' style={{padding:'20px'}}>{address.title}</Typography>
-                    <Typography variant='h6' style={{padding: '20px'}}>〒335-0004 埼玉県蕨市中央5-20-23 アネックスアイ102号 <br></br>蕨駅より徒歩16分 <br/>戸田駅より徒歩18分</Typography>
+                    <Typography variant='h4' style={{padding:'20px', fontWeight:'bolder',fontFamily: font.textFont}}>{address.title}</Typography>
+                    <Typography variant='h6' style={{padding: '20px', fontWeight:'bolder', fontFamily: font.textFont}}>〒335-0004 埼玉県蕨市中央5-20-23 アネックスアイ102号 <br></br>蕨駅より徒歩1５分<br/>戸田駅より徒歩1５分</Typography>
               </Paper>
             </Grid>
           </Grid>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { font } from './style/font';
+import './App.css';
 // components
 import AboutHome from './components/AboutHome';
 import Home from './components/Home';

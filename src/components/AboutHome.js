@@ -8,12 +8,14 @@ import { Paper, Grid, makeStyles, Card, CardHeader,CardActions, CardMedia, CardC
 // images
 import room1 from '../images/room1.JPG';
 import childPlay from '../images/childPlay.png';
+import kids from '../images/kids.png';
 // global context
 import { useGlobalContext } from '../context/mainContext';
 // text
 import { homeData } from '../services/data';
 // colors
 import { colors } from '../style/colors';
+import { font } from '../style/font';
 
 const AboutHome = ()=>{
     const {checkSize, checkSizeMid} = useGlobalContext();
@@ -60,18 +62,22 @@ const AboutHome = ()=>{
             transition: '850ms',
         },
         greetings:{
+            fontFamily: font.textFont,
             fontWeight: 'bold',
             color: colors.lightPink,
             paddingBottom: theme.spacing(2),
             fontSize:'clamp(2.5vw, 7vw, 7vw)',
         },
         greetingText:{
+            fontFamily: font.textFont,
+            fontWeight: 'bolder',
             color: colors.primaryWhite,
             transition: '850ms',
             fontSize:checkSize ? '20px': '30px',
         },
         // title block
         titleBlock:{
+            fontFamily: font.textFont,
             display:'flex',
             transition: '850ms',
             maxWidth: checkSize ? '200px': '300px',
@@ -82,6 +88,7 @@ const AboutHome = ()=>{
 
         },
         title:{
+            fontFamily: font.textFont,
             fontWeight:'bold',
             padding: theme.spacing(2),
             transition: '850ms',
@@ -105,12 +112,12 @@ const AboutHome = ()=>{
     return (
         <div className={classes.aboutContainer} id='ご挨拶'>
           <div className={classes.imgBox}>
-                <img src={childPlay} alt={childPlay} className={classes.imgChild}
+                <img src={kids} alt={kids} className={classes.imgChild}
                 />
             </div>
             <Fade left>
                 <div className={classes.titleBlock}>
-                    <Typography variant={checkSize ? 'h4': 'h2'} className={classes.title}>Greetings</Typography>
+                    <Typography variant={checkSize ? 'h4': 'h2'} className={classes.title}>ご挨拶</Typography>
                 </div>
             </Fade>
      

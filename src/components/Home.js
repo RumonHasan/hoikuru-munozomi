@@ -3,6 +3,7 @@ import { Paper, Grid, Typography, makeStyles, Button, Card } from '@material-ui/
 // images
 import room1 from '../images/room2.JPG';
 import homeRose from '../images/homeRose.png';
+import homeKid from '../images/homeKid.png';
 // context
 import { useGlobalContext } from '../context/mainContext';
 // header
@@ -13,23 +14,47 @@ import Zoom from 'react-reveal/Zoom';
 // title & color
 import { Title } from '../services/data';
 import { colors } from '../style/colors';
+import { font } from '../style/font';
+import { Link } from '@material-ui/core';
 
 const Home = ()=>{
     const {checkSize} = useGlobalContext();
         // material styles
         const useStyles = makeStyles(theme=>({
             title:{
+                fontFamily: font.titleFont,
                 display:'flex',
                 justifyContent:'center',
                 alignItems:'center',
                 position: 'relative',
                 left: '50%',
                 transform: 'translate(-50%, 0)',
-                fontSize:'clamp(2.5vw, 6vw, 6vw)',
-                fontWeight:'bold',
+                [theme.breakpoints.up('700')]:{
+                    fontSize:'60px'
+                },
+                [theme.breakpoints.up('800')]:{
+                    fontSize:'50px'
+                },
+                [theme.breakpoints.up('1000')]:{
+                    fontSize:'80px'
+                },
+                [theme.breakpoints.up('1200')]:{
+                    fontSize:'85px'
+                },
+                [theme.breakpoints.down('700')]:{
+                    fontSize:'40px'
+                },
+                [theme.breakpoints.down('600')]:{
+                    fontSize:'40px'
+                },
+                fontWeight:700,
                 transition: '850ms',
-                color:colors.secondPink,
+                color:colors.primaryWhite,
+                background: colors.titleText,
+                borderRadius: '30px',
                 verticalAlign:'bottom',
+                padding: '3px',
+                textShadow: '1px 22px 10px rgba(16,16,16,0.2)',
             },
             headerGrid:{
                 padding:theme.spacing(3),
@@ -38,6 +63,7 @@ const Home = ()=>{
        
             },
             aboutButton:{
+                fontFamily: font.textFont,
                 background: colors.secondPink,
                 margin:theme.spacing(2),
                 width: checkSize ? '200px' :'300px',
@@ -47,7 +73,7 @@ const Home = ()=>{
                 }
             },
             homeBlock:{
-                background: colors.darkPink2,
+                background: colors.thirdBg,
                 opacity: '0.7',
                 backgroundSize: 'cover',
                 position: 'relative',
@@ -61,7 +87,7 @@ const Home = ()=>{
             homeRoom:{
                 width:'60%' ,
                 borderRadius: '50%',
-                border: `4px solid ${colors.darkPink}`,
+                border: `4px solid ${colors.thirdBg}`,
             },
             homeRoomGrid:{
                 display: 'flex',
@@ -96,15 +122,15 @@ const Home = ()=>{
                 justifyContent:'center',
                 alignItems:'center',
                 flexDirection:'column',}}>
-                        <Typography variant='h2' className={classes.title}>
+                        <Typography className={classes.title}>
                         <Typewriter
                             onInit={(typeText)=>{
-                            typeText.typeString('ようこそ, 保育ルームのぞみ')
+                            typeText.typeString(`ようこそ,<br> 保育ルームのぞみ`)
                             .start()
                         }}
                         ></Typewriter>
                         </Typography>
-                        <Button className={classes.aboutButton} variant='contained'>保育園概要</Button>
+                        <Link href='#保育園概要'><Button className={classes.aboutButton} variant='contained'>保育園概要</Button></Link>
                     </div>
 
                 </Grid>
@@ -117,7 +143,7 @@ const Home = ()=>{
             </Grid>
         </div>
         <div style={{display:'flex', justifyContent:'center'}}>   
-            <img src={homeRose} alt={homeRose} className={classes.homeImg}/>
+            <img src={homeKid} alt={homeKid} className={classes.homeImg}/>
         </div>
     </div>
     )

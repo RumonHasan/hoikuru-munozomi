@@ -24,4 +24,9 @@ export const colors = {
     imageBg: '#c1fdc1',
     imageTitleBlock: '#00A36C',
     mapBg: '#FFBFBF',
+    // new set
+    mainBg: '#FECF8D',
+    secondBg: '#f9a980',
+    thirdBg: '#f69679',
+    titleText: '#ef0c14',
 } 

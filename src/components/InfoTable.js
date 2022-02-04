@@ -9,6 +9,7 @@ import { basicInfo } from '../services/data';
 import Slider from 'react-slick';
 import '../style/imageSlider.css';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { font } from '../style/font';
 // images
 import room1 from '../images/room1.JPG';
 import room2 from '../images/room2.JPG';
@@ -23,6 +24,7 @@ const InfoTable = ()=>{
         },
         // image design
         infoGrid:{
+            fontFamily: font.textFont,
             marginTop: theme.spacing(3),
             paddingBottom: checkSize ? undefined  : theme.spacing(7),
 
@@ -69,6 +71,7 @@ const InfoTable = ()=>{
             
         },
         title:{
+            fontFamily: font.textFont,
             fontWeight:'bold',
             transition: '850ms',
             color: colors.lightPink,
@@ -139,8 +142,8 @@ const InfoTable = ()=>{
                                         const {name, text} = item;
                                         return (
                                             <TableRow key={index} >
-                                                <TableCell style={{fontSize:checkSize? '15px' :'20px'}}>{name}</TableCell>
-                                                <TableCell style={{fontSize:checkSize? '15px' :'20px'}}>{text}</TableCell>
+                                                <TableCell style={{fontSize:checkSize? '15px' :'20px',fontFamily: font.textFont, fontWeight:'bolder'}}>{name}</TableCell>
+                                                <TableCell style={{fontSize:checkSize? '15px' :'20px', fontFamily: font.textFont,fontWeight:'bolder'}}>{text}</TableCell>
                                             </TableRow>
                                         )
                                     })}
@@ -151,7 +154,7 @@ const InfoTable = ()=>{
                     <Grid item xs={12} lg={6} md={6} className={classes.imageSlider}>
                         <div className={classes.sliderApp} >
                             <Typography variant='h2' style={{textAlign:'center', 
-                            color:colors.imageTitleBlock, fontWeight:'bold', padding: '10px'}}>写真</Typography>
+                            color:colors.imageTitleBlock, fontFamily: font.textFont,fontWeight:'bold', padding: '10px'}}>写真</Typography>
                             <Slider {...settings}>
                                 {images.map((image, index)=>{
                                     const {original} = image;
